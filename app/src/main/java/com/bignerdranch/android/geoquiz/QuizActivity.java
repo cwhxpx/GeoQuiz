@@ -17,6 +17,7 @@ public class QuizActivity extends AppCompatActivity {
     private TextView mQuestionTextView;
 
     private static final String TAG = "QuizActivity";
+    private static final String KEY_INDEX = "index";
 
     private Question[] mQuestionBank = {
             new Question(R.string.question_oceans, true),
@@ -28,6 +29,8 @@ public class QuizActivity extends AppCompatActivity {
     private int mCurrentIndex = 0;
 
     private void updateQuestion(){
+//        Log.d(TAG, "Updating question text for question #" + mCurrentIndex,
+//                new Exception());
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
     }
@@ -56,6 +59,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
         mTrueButton = (Button) findViewById(R.id.true_button);
+//        mTrueButton = (Button) findViewById(R.id.question_text_view);
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -79,7 +83,18 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
+        if(savedInstanceState != null){
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+        }
+
         updateQuestion();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState){
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG, "onSaveInstanceState");
+        savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
     }
 
     @Override
