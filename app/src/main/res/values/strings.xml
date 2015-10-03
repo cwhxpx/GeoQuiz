@@ -21,4 +21,7 @@
     <string name="next_button">Next</string>
     <string name="correct_toast">Correct!</string>
     <string name="incorrect_toast">Incorrect!</string>
+    <string name="title_activity_cheat">Cheat</string>
+
+    <string name="hello_world">Hello world!</string>
 </resources>
